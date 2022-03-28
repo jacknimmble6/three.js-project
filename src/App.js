@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { Suspense } from 'react';
+import { Canvas } from '@react-three/fiber'
+import SolarSystem from './SolarSystem'
+import './index.css'
 import './App.css';
+import { Html } from '@react-three/drei';
 
-function App() {
+const App = () => {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Canvas camera={{ fov: 25, position: [350, 100, 60] }}>
+        <Suspense fallback={
+          <Html>
+            <p className="text-white -mt-[50px] ml-[-150px] text-[60px]">
+              Loading....
+            </p>
+          </Html>
+        }>
+          <SolarSystem />
+        </Suspense>
+      </Canvas>
     </div>
   );
 }
